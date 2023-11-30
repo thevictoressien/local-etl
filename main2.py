@@ -242,7 +242,7 @@ def main() -> None:
     start_time = time.perf_counter()
 
     for k, v in data.items():
-        print(f'\nProcessing {k}\'s data...')
+        print(f'\nProcessing {k} data...')
         payload_file = v['payload_file']
         metadata_file = v['metadata_file']
         schema_file = v['schema_file']
