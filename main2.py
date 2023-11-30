@@ -255,7 +255,7 @@ def main() -> None:
         invalid_count = 0  # files that don't match the schema spec
 
         data_path = os.path.join(CWD, data_dir)
-        path, dir_names, file_names = next(os.walk(data_path))
+        _, _, file_names = next(os.walk(data_path))
 
         with open(schema_file, 'r') as schema_s:
             schema = json.load(schema_s)
