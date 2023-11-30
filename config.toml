@@ -1,0 +1,27 @@
+# Note: any line that begins with an '#' is a comment
+# Description:
+# '[[data]]' is array of arrays that represents the config details of
+#   the data to be extracted from the JSON files.
+#   Each item has its key-value pairs, and can have as many items as needed
+#   as long as they conform to the specified format
+
+# Config specification:
+# 'name' simply holds the title of the data being extracted
+# 'schema_file' holds the file name of the schema specification for data validation
+# 'output_file' holds name of the file (csv) to extract the data to
+# 'data_dir' holds the relative directory name of the data files
+# 'schema_mismatch_dir' is the name of the directory to move data files that don't follow the schema spec
+
+[[data]]
+name = "cards"
+schema_file = "card-events-schema.json"
+output_file = "cards.csv"
+data_dir = "cards"
+schema_mismatch_dir = "cards_schema_mismatches"
+
+[[data]]
+name = "users"
+schema_file = "user-events-schema.json"
+output_file = "users.csv"
+data_dir = "cards"
+schema_mismatch_dir = "users_schema_mismatches"
