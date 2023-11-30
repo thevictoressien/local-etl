@@ -3,13 +3,12 @@ import csv
 import sys
 import json
 import time
-# import toml
 import shutil
 from datetime import datetime
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 
-# 3 Tables implementation: cards, users, metadata
+
 
 CWD = os.getcwd()  # current working directory
 replace_missing_data = True  # Whether to replace missing fields with blanks/NULLs or to discard the data
