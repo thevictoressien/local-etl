@@ -1,3 +1,5 @@
 *cards
 *users
 *.json
+*.csv
+*.log
