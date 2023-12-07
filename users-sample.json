@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "type": "user",
+    "event_at": "2023-10-23 22:55:01",
+    "event_id": "0a1bc396-f73d-4919-94c4-84077fdf7456"
+  },
+  "payload": {
+    "id": 945,
+    "name": "Lawrence Welch",
+    "address": "8279 Rodriguez Ports\nPaulbury, VI 89148",
+    "job": "Commercial horticulturist",
+    "score": 0.8627791036375512
+  }
+}

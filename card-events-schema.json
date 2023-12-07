@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://altschoolafrica.com/card-events-schema.json",
+  "title": "Cards",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "user_id": { "type": "integer" },
+        "created_by_name": { "type": "string" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "active": { "type": "boolean" }
+      },
+      "required": ["id", "user_id", "created_by_name", "updated_at", "created_at", "active"]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "event_at": { "type": "string", "format": "date-time" },
+        "event_id": { "type": "string", "format": "uuid" }
+      },
+      "required": ["type", "event_at", "event_id"]
+    }
+  },
+  "required": ["payload", "metadata"]
+}

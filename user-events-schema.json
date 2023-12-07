@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://altschoolafrica.com/user-events-schema.json",
+  "title": "Users",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "event_at": { "type": "string", "format": "date-time" },
+        "event_id": { "type": "string", "format": "uuid" }
+      },
+      "required": ["type", "event_at", "event_id"]
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "address": { "type": "string" },
+        "job": { "type": "string" },
+        "score": { "type": "number" }
+      },
+      "required": ["id", "name", "address", "job", "score"]
+    }
+  },
+  "required": ["metadata", "payload"]
+}

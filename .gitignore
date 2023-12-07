@@ -1,5 +1,6 @@
 *cards
 *users
-*.json
 *.csv
 *.log
+*errors.txt
+*cards_schema_mismatches
