@@ -166,6 +166,20 @@ def get_field_names(schema: dict) -> tuple[list, list]:
     metadata_fields.extend(schema_copy['properties']['metadata']['required'])
 
     payload_fields.append('event_id')  # payload foreign key
+
+    # name & created_by_name columns normalization
+    f1 = 'prefix'
+    f2 = 'suffix'
+    if 'name' in payload_fields:  # users data
+        name_index = payload_fields.index('name')
+        # insert prefix before name (names index)
+        payload_fields.insert(name_index, f1)
+        # insert suffix after name; (accounting for the shift of name's index from previous insertion)
+        payload_fields.insert(name_index + 2, f2) 
+    elif 'created_by_name' in payload_fields:  # cards data
+        created_by_name_index = payload_fields.index('created_by_name')
+        payload_fields.insert(created_by_name_index, f1)
+        payload_fields.insert(created_by_name_index + 2, f2)
     
     return payload_fields, metadata_fields
 
@@ -217,6 +231,29 @@ def get_row_data(json_data: dict) -> tuple[dict, dict]:
         if ',' in payload_dict['job']:  # check if is affected data
             payload_dict['job'] = fix_job_field(payload_dict['job'])
 
+    # adhoc name & created_by_name normalization
+    pdk = payload_dict.keys()
+    if 'name' in pdk:
+        fn = 'name'
+        name_split = payload_dict['name'].split(' ')
+    elif 'created_by_name' in pdk:
+        fn = 'created_by_name'
+        name_split = payload_dict['created_by_name'].split(' ')
+    split_len = len(name_split)
+    if split_len in [3, 4]:
+        titles = ['Dr.', 'Mr.', 'Mrs.', 'Ms.']
+        suffixes = ['PhD', 'MD', 'DDS', 'DVM', 'IV', 'Jr.', 'II']
+        if split_len == 4:
+            payload_dict['prefix'] = name_split[0]
+            payload_dict['suffix'] = name_split[3]
+            payload_dict[fn] = f'{name_split[1]} {name_split[2]}'
+        else:
+            if name_split[0] in titles:
+                payload_dict['prefix'] = name_split[0]
+                payload_dict[fn] = f'{name_split[1]} {name_split[2]}'
+            else:
+                payload_dict['suffix'] = name_split[2]
+                payload_dict[fn] = f'{name_split[0]} {name_split[1]}'
 
     return payload_dict, metadata_dict
 
